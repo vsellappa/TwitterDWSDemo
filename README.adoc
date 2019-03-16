@@ -1,0 +1,66 @@
+= Demo
+venky@cloudera.com
+v0.1, March 16, 2019: Draft
+:page-layout: docs
+:description: Demo Playbook
+:imagesdir: ./images
+
+==== Colophon
+Version: {revnumber}
+: {revdate}
+: {revremark}
+
+==== What
+This demo is to show how NiFI can serve as the Flow platform to connect an Edge Device or a Data distributor to a local PostGreSQL (or any other database) and can be run from a laptop.
+
+The key here is simplicity and speed.
+
+==== Demo Pre-requisites
+. Install https://nifi.apache.org/download.html[NiFI]
+. Install https://www.postgresql.org/download/[PostGresql]
+. Download the latest version of https://jdbc.postgresql.org/[PostGreSQL JDBC Driver]
+
+==== Demo Steps
+. Check NiFI and PostGres is running.
+  
+[NOTE]
+====
+  NiFI by default runs on 8080 , change the property nifi.web.http.port in nifi.properties inside the conf directory to assign a different port.
+====
+
+  sudo netstat -ltnp | grep "LISTEN"
+
+. Login to PostGres
+
+  sudo -i -u postgres
+  psql
+  -- Change the default password
+  \password
+  -- List the current databases
+  \l
+
+. Create a new database
+
+  CREATE DATABASE dwsdemo;
+  -- connect to the new database
+  \connect dwsdemo
+  -- check if the db is present
+  \l
+  -- list all relations (tables etc.)
+  \dt+
+
+. Create a new table for storing "processed" tweets
+
+  CREATE TABLE public.tweets (tweet_id  bigint, unixtime bigint, created_time timestamp, displayname varchar(255), msg text);
+
+  -- describe a table
+  \d public.tweets
+  -- 
+
+. The JDBC URL for connectivity
+
+  jdbc:postgresql://localhost:5432/dwsdemo
+
+. Check the tweets that have come in the last 12 hours
+
+  SELECT created_time, displayname, msg FROM public.tweets WHERE created_time >= NOW() - interval '12 hour';
