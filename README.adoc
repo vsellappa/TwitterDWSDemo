@@ -30,6 +30,8 @@ The key here is simplicity and speed.
 
   sudo netstat -ltnp | grep "LISTEN"
 
+. Open NiFI and import the template from here : https://github.com/vsellappa/TwitterDWSDemo/blob/master/TwitterToLocalDB.xml[TwitterToLocalDB.xml]
+
 . Login to PostGres
 
   sudo -i -u postgres
