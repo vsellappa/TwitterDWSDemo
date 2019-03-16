@@ -1,4 +1,4 @@
-= Demo
+= TwitterDWSDemo
 venky@cloudera.com
 v0.1, March 16, 2019: Draft
 :page-layout: docs
@@ -11,9 +11,9 @@ Version: {revnumber}
 : {revremark}
 
 ==== What
-This demo is to show how NiFI can serve as the Flow platform to connect an Edge Device or a Data distributor to a local PostGreSQL (or any other database) and can be run from a laptop.
+This demo is to show how NiFI can serve as the Flow platform to connect an Edge Device or an external Data distributor to a local PostGreSQL (or any other database).
 
-The key here is simplicity and speed.
+The key here is simplicity and speed and its designed to be run from a laptop.
 
 ==== Demo Pre-requisites
 . Install https://nifi.apache.org/download.html[NiFI]
